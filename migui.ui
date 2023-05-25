@@ -10,27 +10,54 @@
         <property name="width">252</property>
         <layout manager="grid">
           <property name="column">0</property>
-          <property name="row">0</property>
+          <property name="row">2</property>
           <property name="sticky">ew</property>
         </layout>
-        <child>
-          <object class="ttk.Label" id="label1">
-            <property name="justify">left</property>
-            <property name="relief">raised</property>
-            <property name="takefocus">false</property>
-            <property name="text" translatable="yes">Path of Tutorial Folder:</property>
-            <property name="width">30</property>
-            <layout manager="pack">
-              <property name="expand">true</property>
-              <property name="fill">x</property>
-              <property name="side">top</property>
-            </layout>
-          </object>
-        </child>
         <child>
           <object class="ttk.Entry" id="taPathTutorial" named="True">
             <property name="text" translatable="yes">E:\win\Videos</property>
             <property name="width">30</property>
+            <layout manager="pack">
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label1">
+            <property name="justify">left</property>
+            <property name="relief">flat</property>
+            <property name="text" translatable="yes">PathTutorial </property>
+            <layout manager="pack">
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame2">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="ipadx">4</property>
+          <property name="pady">5</property>
+          <property name="row">0</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="button1">
+            <property name="command" type="command" cbtype="simple">clean_temp_txt</property>
+            <property name="text" translatable="yes">clean txt</property>
+            <layout manager="pack">
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button2">
+            <property name="command" type="command" cbtype="simple">crear_temp_txt</property>
+            <property name="text" translatable="yes">create txt</property>
             <layout manager="pack">
               <property name="side">left</property>
             </layout>
@@ -41,8 +68,27 @@
             <property name="command" type="command" cbtype="simple">batch_fix_audios</property>
             <property name="text" translatable="yes">batchFix</property>
             <layout manager="pack">
-              <property name="padx">4</property>
-              <property name="pady">4</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame3">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="row">1</property>
+          <property name="sticky">ew</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="lblDebugMsg" named="True">
+            <property name="justify">right</property>
+            <property name="state">disabled</property>
+            <property name="text" translatable="yes">~~~</property>
+            <layout manager="pack">
               <property name="side">right</property>
             </layout>
           </object>

@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import pathlib
 import pygubu
+import os
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "migui.ui"
-
+TEMPTXT = "D:/temp.txt"
 
 class MiguiApp:
     def __init__(self, master=None):
@@ -15,16 +16,42 @@ class MiguiApp:
         builder.connect_callbacks(self)
 
         self.taPathTutorial = builder.get_object("taPathTutorial")
+        self.lblDebugMsg = builder.get_object("lblDebugMsg")
+
+        import psutil
+        if not "Audacity.exe" in (i.name() for i in psutil.process_iter()):
+            self.lblDebugMsg.config(text = "Audacity is not opened !!")
 
     def run(self):
         self.mainwindow.mainloop()
 
     def batch_fix_audios(self):
-        print("has presionado boton")
-        import principal
-        principal.PATHTUTORIAL = self.taPathTutorial.get()
-        print("........comenzando conversion.........")
-        principal.catch_mp4s()
+        import tmptxt
+        tmptxt.VIDSPATH = self.taPathTutorial.get()     #.replace('\\','/')
+        tmptxt.main()
+    
+    def clean_temp_txt(self):
+        if os.stat(TEMPTXT).st_size == 0:
+            os.remove("D:/temp.txt")
+            self.lblDebugMsg.config(text = "temp.txt fue borrado")
+        else:
+            self.lblDebugMsg.config(text = "temp.txt not empty!!")
+
+    def crear_temp_txt(self):
+        with open(TEMPTXT, 'w')as fp:
+            pass
+        self.lblDebugMsg.config(text = "temp.txt fue creado")
+        lNombres = []
+        for root, dirs, files in os.walk(self.taPathTutorial.get()):
+            for filename in files:
+                if os.path.splitext(filename)[1] == '.mp4':
+                    elpath = os.path.join(root, filename)
+                    if " " in elpath:
+                        self.lblDebugMsg.config(text = "Err: space in name")
+                        break
+                    lNombres.append(elpath)
+        import tmptxt
+        tmptxt.write_temptxt(lNombres)
 
 if __name__ == "__main__":
     app = MiguiApp()

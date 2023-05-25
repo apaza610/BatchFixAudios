@@ -1,7 +1,9 @@
+# edita audio track para 1 solo video (Originalmente era batch para varios)
+
 import os, sys, ffmpeg
 
-print("enter the tutorial folder path: ")
-PATHTUTORIAL = input()
+# print("enter the tutorial folder path: ")
+# PATHTUTORIAL = input()
 
 if sys.platform == 'win32':
     print("pipe-test.py, running on windows")
@@ -56,7 +58,7 @@ def do_command(command):
     return response
 
 def aplicar_efectos(mp4file):
-    mp3Nuevo = mp4file.replace(".mp4","NUEVO.mp3")
+    mp3Nuevo = mp4file.replace(".mp4","NEW.mp3")
     do_command('Import2: Filename=' + mp4file)
     do_command('SelectAll:')
     do_command('Compressor: Threshold=-20')
@@ -67,7 +69,7 @@ def aplicar_efectos(mp4file):
     do_command('RemoveTracks:')
     # do_command('SetPreference: Name=GUI/Theme Value=classic Reload=1')
 
-    mp3file = mp4file.replace(".mp4","NUEVO.mp3")
+    mp3file = mp4file.replace(".mp4","NEW.mp3")
     mp4temp = mp4file.replace(".mp4","OLD.mp4")
     mivideo = ffmpeg.input(mp4file)
     miaudio = ffmpeg.input(mp3file)
@@ -76,15 +78,15 @@ def aplicar_efectos(mp4file):
     os.remove(mp3file)
     os.rename(mp4temp,mp4file)
 
-lMP4s = []
-def catch_mp4s():
-    for root,dirs,files in os.walk(PATHTUTORIAL):       #D:\\borrar\\MiTutorial
-        for filename in files:
-            if os.path.splitext(filename)[1] == '.mp4':
-                elpath = os.path.join(root,filename)
-                if " " in elpath:
-                    print("------Error: nombres no pueden contener espacios------")
-                    break
-                lMP4s.append(elpath)
-                aplicar_efectos(elpath)
-catch_mp4s()
+# lMP4s = []
+# def catch_mp4s():
+#     for root,dirs,files in os.walk(PATHTUTORIAL):       #D:\\borrar\\MiTutorial
+#         for filename in files:
+#             if os.path.splitext(filename)[1] == '.mp4':
+#                 elpath = os.path.join(root,filename)
+#                 if " " in elpath:
+#                     print("------Error: nombres no pueden contener espacios------")
+#                     break
+#                 lMP4s.append(elpath)
+#                 aplicar_efectos(elpath)
+# catch_mp4s()
