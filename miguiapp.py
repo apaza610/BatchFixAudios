@@ -2,9 +2,11 @@
 import pathlib
 import pygubu
 import os
+import tkinter as tk
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "migui.ui"
 TEMPTXT = "D:/temp.txt"
+TEMPTUTPATH = ""
 
 class MiguiApp:
     def __init__(self, master=None):
@@ -27,7 +29,7 @@ class MiguiApp:
 
     def batch_fix_audios(self):
         import tmptxt
-        tmptxt.VIDSPATH = self.taPathTutorial.get()     #.replace('\\','/')
+        tmptxt.VIDSPATH = TEMPTUTPATH
         tmptxt.main()
     
     def clean_temp_txt(self):
@@ -42,10 +44,15 @@ class MiguiApp:
             pass
         self.lblDebugMsg.config(text = "temp.txt fue creado")
         lNombres = []
-        for root, dirs, files in os.walk(self.taPathTutorial.get()):
+        TEMPTUTPATH = self.taPathTutorial.get().replace('\\','/')
+        # TEMPTUTPATH = TEMPTUTPATH
+        self.taPathTutorial.delete(0, tk.END)
+        self.taPathTutorial.insert(0, TEMPTUTPATH)
+        # TEMPTUTPATH = self.taPathTutorial.get()
+        for root, dirs, files in os.walk(TEMPTUTPATH):
             for filename in files:
                 if os.path.splitext(filename)[1] == '.mp4':
-                    elpath = os.path.join(root, filename)
+                    elpath = os.path.join(root, filename).replace('\\','/')
                     if " " in elpath:
                         self.lblDebugMsg.config(text = "Err: space in name")
                         break
