@@ -1,6 +1,6 @@
 # BatchFixAudios
-Batch Fix audio levels from tutorials (Audacity must be previously opened)<br>
-It creates D:/temp.txt so that if Audacity crashes it will keep track of not yet fixed MP4s<br>
+Batch Fix audio levels from video tutorials (Audacity must be previously opened)<br>
+It creates a file D:/temp.txt so that if Audacity crashes or you need to stop the process early it will keep track of not yet fixed MP4s<br>
 If Audacity crashes you can close/reopen Audacity and this app<br>
 If this app seems paused just press middle button to resume operation<br>
 The Bell sound will tell you when convertion is Over.
