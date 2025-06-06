@@ -3,6 +3,7 @@
 
 import os
 import principal
+import copy
 from os.path import exists
 TEMPTXT = "D:/temp.txt"
 VIDSPATH = "E:/win/Videos/"		# "D:\\09-Dictionary\\"
@@ -24,15 +25,17 @@ def read_temptxt():
 		lTmp = [linea.rstrip() for linea in lTmp]
 	return lTmp
 
-def elim_lista_top_elem(lPaths):
-	lPaths.pop(0)
+def elim_lista_top_elem(lPaths, elem):
+	# lPaths.pop(0)
+	lPaths.remove(elem)
 	write_temptxt(lPaths)
 
 def bucle_conversor(lElems):
-	print(lElems)
+	# print(lElems)
+	lElems2 = copy.deepcopy(lElems)		#para evitar borrar componentes de lista original
 	for elem in lElems:
 		principal.aplicar_efectos(elem)
-		elim_lista_top_elem(lElems)
+		elim_lista_top_elem(lElems2, elem)
 		anunciar_si_terminado()
 
 def main():
