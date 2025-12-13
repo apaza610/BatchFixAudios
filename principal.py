@@ -65,7 +65,7 @@ def aplicar_efectos(mp4file):
     do_command('Limiter: thresh=-5')
     do_command('Compressor: Threshold=-20')
     do_command('Amplify: Amplification=5.0')
-    do_command('Normalize:')
+    do_command('Limiter: thresh=-5')
     # do_command('Noise:')
     do_command('Export2: Filename=' + mp3Nuevo)
     do_command('RemoveTracks:')
